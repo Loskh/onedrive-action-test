@@ -9,10 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: setup python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9 #install the python needed
       - name: Download Release        
       - run: |
           $releases = Invoke-WebRequest -Uri 'https://api.github.com/repos/ottercorp/FFXIVQuickLauncher/releases'
