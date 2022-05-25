@@ -1,0 +1,40 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Release XL
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9 #install the python needed
+
+      - name: Run a multi-line script
+        run: |
+          pip install --upgrade --no-cache-dir requests
+          echo "import requests" >> scripts.py
+          echo "import json" >> scripts.py
+          echo "j = json.loads(requests.get("https://api.github.com/repos/ottercorp/FFXIVQuickLauncher/releases").text)" >> scripts.py
+          echo "asset=j[0]["assets"]" >> scripts.py
+          echo "for i in asset:" >> scripts.py
+          echo "  print("curl -O "+i["browser_download_url"])" >> scripts.py
+          python scripts.py > download.sh
+          chmod +x ./download.sh
+          mkdir Downloads
+          cd  Downloads
+          ../download.sh 
+          rm -f Setup.exe CHANGELOG.txt
+      - name: Upload OneDrive
+        uses: Loskh/onedrive-action@v0.7
+        with:
+          files: "*"
+          upload_path: /downloads/ci_test/
+          redirect_uri: "https://file.ffxiv.wang/"
+          client_id: ${{ secrets.CLIENT_ID }}
+          client_secret: ${{ secrets.CLIENT_SECRET }}
+          refresh_token: ${{ secrets.REFRESH_TOKEN }}      
