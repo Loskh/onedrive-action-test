@@ -14,9 +14,9 @@ jobs:
       - name: Checkout master
         uses: actions/checkout@v2
         with:
-          ref: master
+          ref: main
           
-      - name: Upload COS
+      - name: Upload OneDrive
         uses: Loskh/onedrive-action@v0.5
         with:
           file_name: test.bin
