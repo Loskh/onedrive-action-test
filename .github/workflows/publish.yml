@@ -12,7 +12,6 @@ jobs:
           $releases = Invoke-WebRequest -Uri 'https://api.github.com/repos/ottercorp/FFXIVQuickLauncher/releases'
           $current = ConvertFrom-Json -InputObject $releases.Content | Select-Object -First 1
           mkdir Releases
-          cp .\XIVLauncher\Resources\CHANGELOG.txt .\Releases\
           $release_file = $current.assets | Where-Object -Property name -Value RELEASES -EQ
           Invoke-WebRequest -Uri $release_file.browser_download_url -OutFile .\Releases\RELEASES
           $delta_file = $current.assets | Where-Object -Property name -Value "*delta.nupkg" -Like
