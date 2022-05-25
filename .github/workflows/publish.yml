@@ -10,25 +10,24 @@ jobs:
         run: |
           $releases = Invoke-WebRequest -Uri 'https://api.github.com/repos/ottercorp/FFXIVQuickLauncher/releases'
           $current = ConvertFrom-Json -InputObject $releases.Content | Select-Object -First 1
-          mkdir Releases
           $release_file = $current.assets | Where-Object -Property name -Value RELEASES -EQ
-          Invoke-WebRequest -Uri $release_file.browser_download_url -OutFile .\Releases\RELEASES
+          Invoke-WebRequest -Uri $release_file.browser_download_url -OutFile .\RELEASES
           $delta_file = $current.assets | Where-Object -Property name -Value "*delta.nupkg" -Like
           try
           {
-            Invoke-WebRequest -Uri $delta_file.browser_download_url -OutFile ".\Releases\$($delta_file.name)"
+            Invoke-WebRequest -Uri $delta_file.browser_download_url -OutFile "$($delta_file.name)"
           }
           catch
           {
           }
           $full_file = $current.assets | Where-Object -Property name -Value "*full.nupkg" -Like
-          Invoke-WebRequest -Uri $full_file.browser_download_url -OutFile ".\Releases\$($full_file.name)"
+          Invoke-WebRequest -Uri $full_file.browser_download_url -OutFile "$($full_file.name)"
         shell: pwsh
         
       - name: Upload OneDrive
         uses: Loskh/onedrive-action@v0.7
         with:
-          files: ".\\Release\\*"
+          files: "*"
           upload_path: /downloads/XLRelease/
           redirect_uri: "https://file.ffxiv.wang/"
           client_id: ${{ secrets.CLIENT_ID }}
