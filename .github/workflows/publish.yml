@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Release
-      - run: |
+        run: |
           $releases = Invoke-WebRequest -Uri 'https://api.github.com/repos/ottercorp/FFXIVQuickLauncher/releases'
           $current = ConvertFrom-Json -InputObject $releases.Content | Select-Object -First 1
           mkdir Releases
