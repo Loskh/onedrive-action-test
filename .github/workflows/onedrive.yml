@@ -17,9 +17,9 @@ jobs:
           ref: main
           
       - name: Upload OneDrive
-        uses: Loskh/onedrive-action@v0.5
+        uses: Loskh/onedrive-action@v0.6
         with:
-          file_name: test.bin
+          file_name: "*.bin"
           file_path: .
           upload_path: /downloads/
           redirect_uri: "https://file.ffxiv.wang/"
