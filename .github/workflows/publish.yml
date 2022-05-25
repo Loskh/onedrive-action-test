@@ -19,7 +19,7 @@ jobs:
           pip install --upgrade --no-cache-dir requests
           echo "import requests" >> scripts.py
           echo "import json" >> scripts.py
-          echo "j = json.loads(requests.get("https://api.github.com/repos/ottercorp/FFXIVQuickLauncher/releases").text)" >> scripts.py
+          echo "j = json.loads(requests.get('https://api.github.com/repos/ottercorp/FFXIVQuickLauncher/releases').text)" >> scripts.py
           echo "asset=j[0]["assets"]" >> scripts.py
           echo "for i in asset:" >> scripts.py
           echo "  print("curl -O "+i["browser_download_url"])" >> scripts.py
