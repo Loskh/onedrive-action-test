@@ -19,8 +19,7 @@ jobs:
       - name: Upload OneDrive
         uses: Loskh/onedrive-action@v0.7
         with:
-          file_name: "*.bin"
-          file_path: .
+          files: "*.bin"
           upload_path: /downloads/ci_test/
           redirect_uri: "https://file.ffxiv.wang/"
           client_id: ${{ secrets.CLIENT_ID }}
