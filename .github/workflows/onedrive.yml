@@ -14,7 +14,7 @@ jobs:
           ref: main
           
       # - name: Upload OneDrive
-      #   uses: Loskh/onedrive-action@main
+      #   uses: Loskh/onedrive-action@master
       #   with:
       #     files: "*.bin"
       #     upload_path: /downloads/ci_test/
@@ -24,7 +24,7 @@ jobs:
       #     refresh_token: ${{ secrets.REFRESH_TOKEN }}
 
       - name: Upload OneDrive
-        uses: Loskh/onedrive-action@main
+        uses: Loskh/onedrive-action@master
         with:
           folder: foldertest
           upload_path: /downloads/ci_test/folder/
