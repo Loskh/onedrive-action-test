@@ -1,5 +1,6 @@
 name: Run PowerShell Scripts 
-on: push
+on:
+  workflow_dispatch:
 
 jobs:
   upload:
